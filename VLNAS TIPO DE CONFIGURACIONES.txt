@@ -1,0 +1,93 @@
+!!!!!LEGACY¡¡¡¡¡¡
+----------------------------------------------------------------------------------------
+
+1. set inicial
+	-nombre
+	-password
+2. vlnas + membresia puertos
+	-access
+	-apagar todos los puertos no usados
+3. Puertos virtuales
+	-ip
+	-gateway
+-----------------------------------------------------------------------------------------
+
+802.1Q esto es el taging para las vlnas
+
+-----------------------------------------------------------------------------------------
+
+1. set inicial
+	-nombre
+	-password
+2. vlnas + membresia puertos
+	-access
+	-apagar todos los puertos no usados
+	-crear puertos troncales
+3. router
+	-A nivel interface
+	-no shutdown se da en la interface generla
+		-subdividir con el punto y el numero de la vlan(opcional para tener un orden)
+		-802.1Q(dot1Q) encapsulation y (vlna que estes utilizando)
+		-IP
+	- Y el enrrutamiento estatico o dinamico
+--------------------------------------------------------------------------------------------
+
+SWITCH CAPAR 3 MLS |-|
+--------------------------------------------------------------------------------------------
+
+1. set inicial
+	-nombre
+	-password
+2. vlnas + membresia puertos
+	-access
+	-apagar todos los puertos no usados
+
+3. Puertos virtuales
+	-ip
+	-gateway
+4.MLS
+	-Definir que interfaces se convierten en interfaces de router
+		-No switch por
+			-ip
+			-gateway(de la interface virtua)
+			ruteo estatico o dinamico
+	
+
+
+NOTA en el mls si usas ipv6 hay que activarlo MUY IMPORTANTE(ipv6 unicast-routing)
+ENCENDER EL RUTEO (ip routing)
+(no switchport)
+################################################################################
+
+ETHERCHANNEL
+
+
+PARA EL ETHER CHANNEL EXISTEN DOS TIPOS DE PROTOCOLOS
+
+PAgP:	CHANNEL-GROUP 1 MODE DESIRABLE
+
+LACP:	CHANNEL-GROUP 2 MODE ACTIVE 
+
+Y PARA HACER UN BACKUP DE LACP ES CON: CHANNEL-GROUP 3 MODE PASSIVE
+
+S1(config)# interface range FastEthernet 0/1 - 2
+S1(config-if-range)# channel-group 1 mode active
+S1(config-if-range)# exit
+S1(config)# interface port-channel 1
+S1(config-if)# switchport mode trunk
+S1(config-if)# switchport trunk allowed vlan 1,2,20
+
+################################################################################
+
+
+ip routing 
+
+ipv6 unicast-routing
+
+para el switch multicpa sdm prefer dual-ipv4-and-ipv6 routing
+
+
+
+
+
+
